@@ -2,13 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>S_T.Apartaments.Entities</RootNamespace>
+    <RootNamespace>S_T.Apartaments.Shared</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
+    <Folder Include="CustomExceptions\" />
+    <Folder Include="Settings\" />
+    <Folder Include="Responses\" />
   </ItemGroup>
 
 </Project>
