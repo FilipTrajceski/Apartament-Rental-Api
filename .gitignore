@@ -404,3 +404,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/S&T.Apartaments/.gitignore
+/.gitignore
