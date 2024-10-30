@@ -15,7 +15,6 @@ The project is using these NuGet Packages:
 - Swashbuckle.AspNetCore
 - Swashbuckle.AspNetCore.Filters
 - System.IdentityModel.Tokens.Jwt
-
 ```
 
 Work in progress...
