@@ -1,6 +1,6 @@
 ﻿namespace S_T.Apartaments.Entities.Enums
 {
-    public enum RoomSize
+    public enum ApartmentSize
     {
         Small,
         Medium,

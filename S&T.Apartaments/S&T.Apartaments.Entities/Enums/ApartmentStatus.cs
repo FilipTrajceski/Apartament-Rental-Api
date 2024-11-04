@@ -1,8 +1,8 @@
 ﻿namespace S_T.Apartaments.Entities.Enums
 {
-    public enum RoomStatus
+    public enum ApartmentStatus
     {
-        Avalible,
+        Available,
         Occupied,
         Under_Maintenance,
         Renovating
