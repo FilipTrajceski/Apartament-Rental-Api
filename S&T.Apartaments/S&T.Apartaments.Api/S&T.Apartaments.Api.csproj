@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>S_T.Apartaments.Api</RootNamespace>
+    <UserSecretsId>ae773645-4f7d-44d9-b17e-2e8ff7569c2a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +27,12 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\S&amp;T.Apartaments.Helpers\S&amp;T.Apartaments.Helpers.csproj" />
+    <ProjectReference Include="..\S&amp;T.Apartaments.Mappers\S&amp;T.Apartaments.Mappers.csproj" />
+    <ProjectReference Include="..\S&amp;T.Apartaments.Shared\S&amp;T.Apartaments.Shared.csproj" />
   </ItemGroup>
 
 </Project>

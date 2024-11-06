@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataLayer\" />
     <Folder Include="UserService\" />
   </ItemGroup>
 
@@ -26,6 +25,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\S&amp;T.Apartaments.Application\S&amp;T.Apartaments.Application.csproj" />
+    <ProjectReference Include="..\S&amp;T.Apartaments.Entities\S&amp;T.Apartaments.Entities.csproj" />
   </ItemGroup>
 
 </Project>

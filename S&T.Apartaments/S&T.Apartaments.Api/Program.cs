@@ -1,23 +1,39 @@
+using Microsoft.AspNetCore.Http.Extensions;
+using S_T.Apartaments.Helpers.DiContainer;
+using S_T.Apartaments.Helpers.Extensions;
+using S_T.Apartaments.Mappers.MapperConfig;
+
 var builder = WebApplication.CreateBuilder(args);
+var appSettings = builder.Configuration.GetSection("AppSettings");
 
-// Add services to the container.
-
+builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly)
+                .AddSqlDbContext(appSettings)
+                .AddAuthentication()
+                .AddJwt(appSettings)
+                .AddIdentity()
+.AddCors()
+.AddSwagger();
+
+DiHelper.InjectRepositories(builder.Services);
+DiHelper.InjectService(builder.Services);
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseCors("CORSPolicy");
+
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
