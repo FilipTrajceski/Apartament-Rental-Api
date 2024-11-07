@@ -8,10 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="UserService\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
@@ -30,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\S&amp;T.Apartaments.Application\S&amp;T.Apartaments.Application.csproj" />
     <ProjectReference Include="..\S&amp;T.Apartaments.Entities\S&amp;T.Apartaments.Entities.csproj" />
+    <ProjectReference Include="..\S&amp;T.Apartaments.Shared\S&amp;T.Apartaments.Shared.csproj" />
   </ItemGroup>
 
 </Project>

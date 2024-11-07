@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using S_T.Apartaments.Application.Common.Interfaces;
 using S_T.Apartaments.Infrastructure.DataLayer;
+using S_T.Apartaments.Infrastructure.TokenService;
+using S_T.Apartaments.Infrastructure.UserService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +26,8 @@ namespace S_T.Apartaments.Helpers.DiContainer
 
         public static void InjectService (IServiceCollection services)
         {
-
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ITokenService, TokenService>();
         }
     }
 }

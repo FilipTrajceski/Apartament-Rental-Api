@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using S_T.Apartaments.Infrastructure.DataLayer;
 
@@ -11,9 +12,11 @@ using S_T.Apartaments.Infrastructure.DataLayer;
 namespace S_T.Apartaments.Infrastructure.Migrations
 {
     [DbContext(typeof(S_TDbContext))]
-    partial class S_TDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241107115716_addCountryPropertyToUser")]
+    partial class addCountryPropertyToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

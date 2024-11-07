@@ -8,6 +8,7 @@ namespace S_T.Apartaments.Entities.Entities
     {
         public UserRole Role { get; set; }
         public bool HasCheckedInPreviously {  get; set; }
+        public string Country {  get; set; }
 
         //navigation property
         [JsonIgnore]

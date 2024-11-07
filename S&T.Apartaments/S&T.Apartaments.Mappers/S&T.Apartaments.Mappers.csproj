@@ -11,4 +11,9 @@
     <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\S&amp;T.Apartaments.Application\S&amp;T.Apartaments.Application.csproj" />
+    <ProjectReference Include="..\S&amp;T.Apartaments.Entities\S&amp;T.Apartaments.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

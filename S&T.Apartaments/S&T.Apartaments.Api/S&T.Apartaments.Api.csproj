@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\S&amp;T.Apartaments.Helpers\S&amp;T.Apartaments.Helpers.csproj" />
     <ProjectReference Include="..\S&amp;T.Apartaments.Mappers\S&amp;T.Apartaments.Mappers.csproj" />
     <ProjectReference Include="..\S&amp;T.Apartaments.Shared\S&amp;T.Apartaments.Shared.csproj" />
