@@ -18,6 +18,7 @@ The project is using these NuGet Packages:
 ```
 
 Users can now register,login.The login returns a JWT Bearer token,which you will need to login with,to access the other endpoints.Type bearer {token} to login (In Swagger).
+
 User Roles: 
 ```
 0 - Admin
