@@ -24,7 +24,7 @@ User Roles:
 ```
 0 - Admin
 1 - Owner
-3 - Renter
+2 - Renter
 ```
 Admin can access users info through endpoints and delete users from the DB.In this stage of the development if you type "0" in User Role while registering the user will be admin.
 
