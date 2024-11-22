@@ -27,6 +27,7 @@ User Roles:
 2 - Renter
 ```
 Admin can access users info through endpoints and delete users from the DB.In this stage of the development if you type "0" in User Role while registering the user will be admin.
+Admin can now change user roles between renter and owner.If a admin changes a user role to "0" making the user an admin, he can't change it back.Has to delete the account
 
 Owner will be able to add Apartments to the DB,view them,update them,delete them.(this is not yet coded,will be further down the process)
 
