@@ -9,6 +9,7 @@ namespace S_T.Apartaments.Entities.Enums
 {
     public enum UserRole
     {
+       Admin,
        Owner,
        Renter
     }

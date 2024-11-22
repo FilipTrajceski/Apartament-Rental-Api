@@ -4,6 +4,7 @@ using S_T.Apartaments.Application.Common.DTOs.UserDto;
 using S_T.Apartaments.Application.Common.Interfaces;
 using S_T.Apartaments.Shared.CustomExceptions.UserExceptions;
 using S_T.Apartaments.Shared.Responses;
+using System.Security.Claims;
 
 namespace S_T.Apartaments.Api.Controllers
 {
@@ -67,12 +68,14 @@ namespace S_T.Apartaments.Api.Controllers
         {
             try
             {
-                var response = await _userService.GetAllUsersAsync();
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (userId == null) return BadRequest("No user identified");
+                var response = await _userService.GetAllUsersAsync(userId);
                 if (response.IsSuccessfull)
                 {
                     return Ok(response);
                 }
-                return BadRequest(response.Errors.ToString());
+                return BadRequest(string.Join(", ", response.Errors));
             }
             catch (Exception ex)
             {
@@ -81,16 +84,18 @@ namespace S_T.Apartaments.Api.Controllers
         }
 
         [HttpGet("{userName}")]
-        public async Task<IActionResult> GetUserById(string userName)
+        public async Task<IActionResult> GetUserByUsername(string userName)
         {
             try
             {
-                var response = await _userService.GetUserByUserNameAsync(userName);
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (userId == null) return BadRequest("No user identified");
+                var response = await _userService.GetUserByUserNameAsync(userName,userId);
                 if (response.IsSuccessfull)
                 {
-                    return Ok(response);
+                    return Ok(response.Result);
                 }
-                return BadRequest(response.Errors.ToString());
+                return BadRequest(string.Join(", ", response.Errors));
             }
             catch (Exception ex)
             {
@@ -98,17 +103,20 @@ namespace S_T.Apartaments.Api.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(string id)
+        [HttpDelete("{userName}")]
+        public async Task<IActionResult> DeleteUser(string userName)
         {
             try
             {
-                var response = await _userService.DeleteUserAsync(id);
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (userId == null) return BadRequest("No user identified");
+                var response = await _userService.DeleteUserAsync(userName,userId);
                 if (response.IsSuccessfull)
                 {
-                    return Ok(response);
+                 
+                    return Ok(response.ToString());
                 }
-                return BadRequest(response.Errors.ToString());
+                return BadRequest(string.Join(", ", response.Errors));
             }
             catch (UserDataException ex)
             {

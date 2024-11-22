@@ -15,9 +15,9 @@ namespace S_T.Apartaments.Application.Common.Interfaces
 
         Task<CustomResponse<LogInTokenDto>> LogInUserAsync(LogInUserDto request);
 
-        Task<CustomResponse<UserDto>> GetUserByUserNameAsync(string userName);
-        Task<CustomResponse> GetAllUsersAsync();
+        Task<CustomResponse<UserDto>> GetUserByUserNameAsync(string userName, string userId);
+        Task<CustomResponse> GetAllUsersAsync(string userId);
 
-        Task<CustomResponse> DeleteUserAsync(string id);
+        Task<CustomResponse> DeleteUserAsync(string userName,string userId);
     }
 }

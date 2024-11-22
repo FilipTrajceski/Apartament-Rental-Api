@@ -27,15 +27,23 @@ namespace S_T.Apartaments.Infrastructure.UserService
             _tokenService = tokenService;
         }
 
-        public async Task<CustomResponse> DeleteUserAsync(string id)
+        public async Task<CustomResponse> DeleteUserAsync(string userName, string userId)
         {
             try
             {
-                var user = await _userManager.FindByIdAsync(id);
-                if (user is null) return new CustomResponse("User not found!");
-                var result = await _userManager.DeleteAsync(user);
-                if (!result.Succeeded) return new CustomResponse(result.Errors.ToString());
-                return new CustomResponse("User deleted!");
+                var owner = await _userManager.FindByIdAsync(userId);
+                if (owner.Role == Entities.Enums.UserRole.Admin)
+                {
+                    var user = await _userManager.FindByNameAsync(userName);
+                    if (user is null) return new CustomResponse<UserDto>("User not found!");
+                    var result = await _userManager.DeleteAsync(user);
+                    if (!result.Succeeded) return new CustomResponse<UserDto>("Something went wrong!");
+                    return new CustomResponse<UserDto>("User deleted!");
+                }
+                else
+                {
+                    return new CustomResponse<UserDto>(errors:"You cannot perform this action (Only admins)!");
+                }
             }
             catch(UserDataException ex)
             {
@@ -47,16 +55,24 @@ namespace S_T.Apartaments.Infrastructure.UserService
             }
         }
 
-        public async Task<CustomResponse> GetAllUsersAsync()
+        public async Task<CustomResponse> GetAllUsersAsync(string userId)
         {
             try
             {
-                var response = new CustomResponse<List<UserDto>>();
-                var users = await _userManager.Users.ToListAsync();
-                var userDtos = users.Select(user => _mapper.Map<UserDto>(user)).ToList();
-                response.Result = userDtos;
-                response.IsSuccessfull = true;
-                return response;
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user.Role == Entities.Enums.UserRole.Admin)
+                {
+                    var response = new CustomResponse<List<UserDto>>();
+                    var users = await _userManager.Users.ToListAsync();
+                    var userDtos = users.Select(user => _mapper.Map<UserDto>(user)).ToList();
+                    response.Result = userDtos;
+                    response.IsSuccessfull = true;
+                    return response;
+                }
+                else
+                {
+                    return new CustomResponse("You cannot perform this action (only admins)!") { IsSuccessfull= false};
+                }
 
             }
             catch (UserDataException ex)
@@ -65,15 +81,27 @@ namespace S_T.Apartaments.Infrastructure.UserService
             }
         }
 
-        public async Task<CustomResponse<UserDto>> GetUserByUserNameAsync(string userName)
+        public async Task<CustomResponse<UserDto>> GetUserByUserNameAsync(string userName, string userId)
         {
             try
             {
-                var user = await _userManager.FindByIdAsync(userName);
-                if (user is null) return new CustomResponse<UserDto>("User not found!");
+                var admin = await _userManager.FindByIdAsync(userId);
+                if (admin.Role == Entities.Enums.UserRole.Admin)
+                {
 
-                UserDto userDto = _mapper.Map<UserDto>(user);
-                return new CustomResponse<UserDto>(userDto);
+                    var user = await _userManager.FindByNameAsync(userName);
+                    if (user is null) return new CustomResponse<UserDto>("User not found!") { IsSuccessfull = false };
+
+                    UserDto userDto = _mapper.Map<UserDto>(user);
+                    var response = new CustomResponse<UserDto>();
+                    response.Result = userDto;
+                    response.IsSuccessfull = true;
+                    return new CustomResponse<UserDto>(response.Result);
+                }
+                else
+                {
+                    return new CustomResponse<UserDto>("You cannot perform this action (only admins)!") { IsSuccessfull= false};
+                }
 
             }
             catch (UserDataException ex)
@@ -137,7 +165,7 @@ namespace S_T.Apartaments.Infrastructure.UserService
 
                 if(registerUser.Password != registerUser.ConfirmPassword) { return new("Passwords do not match!"); }
 
-                var user = new UserDto()
+                var user = new User()
                 {
                     UserName = registerUser.UserName,
                     Email = registerUser.Email,
