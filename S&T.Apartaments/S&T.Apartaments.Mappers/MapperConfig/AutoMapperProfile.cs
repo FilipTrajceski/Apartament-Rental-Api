@@ -12,6 +12,7 @@ namespace S_T.Apartaments.Mappers.MapperConfig
             CreateMap<User, LogInUserDto>().ReverseMap();
             CreateMap<User, RegisterUserDto>().ReverseMap();   
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, ChangeUserRoleDto>().ReverseMap();
             #endregion
         }
     }

@@ -27,6 +27,45 @@ namespace S_T.Apartaments.Infrastructure.UserService
             _tokenService = tokenService;
         }
 
+        public async Task<CustomResponse> ChangeRoleAsync(ChangeUserRoleDto dto, string adminUserId)
+        {
+            try
+            {
+                var admin = await _userManager.FindByIdAsync(adminUserId);
+                if(admin.Role != Entities.Enums.UserRole.Admin)
+                {
+                    return new CustomResponse("You can't perform this action!");
+                }
+
+                var user = await _userManager.FindByNameAsync(dto.Username);
+                if(user.Role == Entities.Enums.UserRole.Admin){ return new CustomResponse("You can't change admin roles!");}
+
+                if (string.IsNullOrEmpty(dto.Username)) { return new CustomResponse("Username field cannot be empty!"); }
+                if(dto.CurrentRole != user.Role) { return new CustomResponse($"User's {user.UserName} Role is not matching with the one you inputed"); }
+
+                if(dto.ChangeRoleTo != Entities.Enums.UserRole.Admin &&
+                   dto.ChangeRoleTo != Entities.Enums.UserRole.Owner &&
+                   dto.ChangeRoleTo != Entities.Enums.UserRole.Renter)
+                {
+                    return new CustomResponse($"Invalid role input! {dto.ChangeRoleTo} is not a role");
+                }
+                user.Role = dto.ChangeRoleTo;
+
+                await _userManager.UpdateAsync(user);
+
+                return new CustomResponse($"User's {user.UserName} role changed!");
+
+            }
+            catch(UserDataException ex)
+            {
+                throw new UserDataException(ex.Message);
+            }
+            catch(UserNotFoundException ex)
+            {
+                throw new UserNotFoundException(ex.Message);
+            }
+        }
+
         public async Task<CustomResponse> DeleteUserAsync(string userName, string userId)
         {
             try

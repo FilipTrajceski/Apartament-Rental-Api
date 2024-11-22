@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using S_T.Apartaments.Application.Common.DTOs.UserDto;
 using S_T.Apartaments.Application.Common.Interfaces;
+using S_T.Apartaments.Entities.Enums;
 using S_T.Apartaments.Shared.CustomExceptions.UserExceptions;
-using S_T.Apartaments.Shared.Responses;
 using System.Security.Claims;
 
 namespace S_T.Apartaments.Api.Controllers
@@ -55,7 +55,7 @@ namespace S_T.Apartaments.Api.Controllers
                 {
                     return Ok(response);
                 }
-                return BadRequest(response.Errors.ToString());
+                return BadRequest(string.Join(", ", response.Errors));
             }
             catch (UserDataException ex)
             {
@@ -90,7 +90,7 @@ namespace S_T.Apartaments.Api.Controllers
             {
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 if (userId == null) return BadRequest("No user identified");
-                var response = await _userService.GetUserByUserNameAsync(userName,userId);
+                var response = await _userService.GetUserByUserNameAsync(userName, userId);
                 if (response.IsSuccessfull)
                 {
                     return Ok(response.Result);
@@ -110,10 +110,10 @@ namespace S_T.Apartaments.Api.Controllers
             {
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 if (userId == null) return BadRequest("No user identified");
-                var response = await _userService.DeleteUserAsync(userName,userId);
+                var response = await _userService.DeleteUserAsync(userName, userId);
                 if (response.IsSuccessfull)
                 {
-                 
+
                     return Ok(response.ToString());
                 }
                 return BadRequest(string.Join(", ", response.Errors));
@@ -122,7 +122,28 @@ namespace S_T.Apartaments.Api.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            catch(UserNotFoundException ex)
+            catch (UserNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("change-roles")]
+        public async Task<IActionResult> ChangeRole([FromBody]ChangeUserRoleDto dto)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (userId == null) return BadRequest("No user identified");
+                var response = await _userService.ChangeRoleAsync(dto, userId);
+                if (response.IsSuccessfull) { return Ok(response); }
+                return BadRequest(string.Join(", ", response.Errors));
+            }
+            catch (UserDataException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (UserNotFoundException ex)
             {
                 return BadRequest(ex.Message);
             }

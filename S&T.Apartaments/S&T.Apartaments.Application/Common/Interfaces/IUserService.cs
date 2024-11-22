@@ -19,5 +19,6 @@ namespace S_T.Apartaments.Application.Common.Interfaces
         Task<CustomResponse> GetAllUsersAsync(string userId);
 
         Task<CustomResponse> DeleteUserAsync(string userName,string userId);
+        Task<CustomResponse> ChangeRoleAsync(ChangeUserRoleDto dto, string adminUserId);
     }
 }
