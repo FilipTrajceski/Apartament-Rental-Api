@@ -12,8 +12,8 @@ using S_T.Apartaments.Infrastructure.DataLayer;
 namespace S_T.Apartaments.Infrastructure.Migrations
 {
     [DbContext(typeof(S_TDbContext))]
-    [Migration("20241106110222_initCreationOfTables")]
-    partial class initCreationOfTables
+    [Migration("20241125115522_initCreationOfDB")]
+    partial class initCreationOfDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -260,7 +260,12 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -285,6 +290,7 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -303,6 +309,7 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -317,6 +324,25 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f872b5fa-ebce-4de1-a227-a5608f654a8f",
+                            Country = "USA",
+                            Email = "admin@adminsky.com",
+                            EmailConfirmed = true,
+                            HasCheckedInPreviously = true,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAIAAYagAAAAEOKjrkrQhc9DNHprQRjI1675xS09o+dr+DAzQ1BLzOrQo9e2iWmVXykDLsVjWOTHMQ==",
+                            PhoneNumberConfirmed = false,
+                            Role = 0,
+                            SecurityStamp = "47412a1b-d03d-4857-b2fd-14f8364c4057",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

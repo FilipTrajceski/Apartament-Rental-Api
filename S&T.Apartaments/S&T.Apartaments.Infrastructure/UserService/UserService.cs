@@ -210,7 +210,7 @@ namespace S_T.Apartaments.Infrastructure.UserService
                     Email = registerUser.Email,
                     HasCheckedInPreviously = false,
                     Country = registerUser.Country,
-                    Role = registerUser.UserRole,
+                    Role = Entities.Enums.UserRole.Renter,
 
                 };
                 var result = await _userManager.CreateAsync(user, registerUser.Password);

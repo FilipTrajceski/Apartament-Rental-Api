@@ -12,8 +12,8 @@ using S_T.Apartaments.Infrastructure.DataLayer;
 namespace S_T.Apartaments.Infrastructure.Migrations
 {
     [DbContext(typeof(S_TDbContext))]
-    [Migration("20241107115716_addCountryPropertyToUser")]
-    partial class addCountryPropertyToUser
+    [Migration("20241125115811_updateSeedUser")]
+    partial class updateSeedUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -265,6 +265,7 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -289,6 +290,7 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -307,6 +309,7 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -321,6 +324,27 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e278ce51-2dff-4365-9c65-34c4dd9d2e83",
+                            Country = "USA",
+                            Email = "admin@adminsky.com",
+                            EmailConfirmed = true,
+                            HasCheckedInPreviously = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMINSKY.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDUCTZyeyUtqCuJm37tvyGrIKkLr8EkQTINwrKrhqx1toNL5KIZQ3H2Ow9MkwljdLA==",
+                            PhoneNumberConfirmed = false,
+                            Role = 0,
+                            SecurityStamp = "fe4fcadb-aed4-44dd-9064-7b9e73b1daa6",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

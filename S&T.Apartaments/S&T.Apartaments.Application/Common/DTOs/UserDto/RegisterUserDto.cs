@@ -12,7 +12,6 @@ namespace S_T.Apartaments.Application.Common.DTOs.UserDto
         public string UserName { get; set; }
         public string Password { get; set; }    
         public string ConfirmPassword { get; set; }
-        public UserRole UserRole { get; set; }
         public string Email {  get; set; }
         public string Country {  get; set; }
     }

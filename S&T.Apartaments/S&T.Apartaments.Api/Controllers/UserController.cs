@@ -33,7 +33,6 @@ namespace S_T.Apartaments.Api.Controllers
                     ConfirmPassword = registerUserDto.ConfirmPassword,
                     UserName = registerUserDto.UserName,
                     Country = registerUserDto.Country,
-                    UserRole = registerUserDto.UserRole
                 };
                 var response = await _userService.RegisterUserAsync(request);
                 return Response(response);
