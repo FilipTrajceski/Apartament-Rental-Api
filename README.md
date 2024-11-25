@@ -35,7 +35,7 @@ Renter can only view the apartments and book them.(this is not yet coded,will be
 
 You can clone the repository,change the connection string (located in S&T.Rental.Api/Connected services/secrets.json) right-click on secrets.json,then go to manage secrets and change the connection string to your SMSSQL connection string.Make a migration,then update the database and through the endpoints you can register/login users.
 
-When you register a user the role will be Renter-2.To change roles there is a already created admin user in the DB.First you need to make the migration,after makeing the migration you may have to restart your IDE or Code editor.After doing that you can run the api and log in with the admin role.
+When you register a user the role will be Renter-2.To change roles there is a already created admin user in the DB.First you need to make the migration,after making the migration you may have to restart your IDE or Code editor.After doing that you can run the api and log in with the admin role.
 The credentials for the admin user are: 
 ```
 UserName : Admin,
