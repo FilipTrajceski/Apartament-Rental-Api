@@ -5,7 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace S_T.Apartaments.Infrastructure.TokenService
+namespace S_T.Apartaments.Infrastructure.Services.TokenService
 {
     public class TokenService : ITokenService
     {
@@ -36,7 +36,7 @@ namespace S_T.Apartaments.Infrastructure.TokenService
                 audience: _configuration["JWT:ValidAudience"],
                 expires: DateTime.UtcNow.AddMinutes(60),
                 claims: authClaims,
-                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256 )
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );
             return token;
         }

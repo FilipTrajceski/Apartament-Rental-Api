@@ -21,6 +21,11 @@ namespace S_T.Apartaments.Infrastructure.DataLayer.FluentConfig
                 .HasForeignKey(x => x.RenterId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasMany(x => x.Apartment)
+                .WithOne(x => x.User)
+                .HasForeignKey(x => x.OwnerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.Property(x => x.UserName)
                 .IsRequired()
                 .HasMaxLength(50);

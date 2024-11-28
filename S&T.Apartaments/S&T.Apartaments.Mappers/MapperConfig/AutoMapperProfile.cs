@@ -19,6 +19,7 @@ namespace S_T.Apartaments.Mappers.MapperConfig
             #region ApartmentMapping
             CreateMap<Apartment, BaseApartmentDto>().ReverseMap();
             CreateMap<Apartment, ApartmentDto>().ReverseMap();
+            CreateMap<Apartment, UpdateApartmentDto>().ReverseMap();
             #endregion
         }
     }

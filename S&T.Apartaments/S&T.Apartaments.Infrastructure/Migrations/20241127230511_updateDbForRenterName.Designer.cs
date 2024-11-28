@@ -12,8 +12,8 @@ using S_T.Apartaments.Infrastructure.DataLayer;
 namespace S_T.Apartaments.Infrastructure.Migrations
 {
     [DbContext(typeof(RentalDbContext))]
-    [Migration("20241125115811_updateSeedUser")]
-    partial class updateSeedUser
+    [Migration("20241127230511_updateDbForRenterName")]
+    partial class updateDbForRenterName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,6 +198,10 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                     b.Property<string>("RenterId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RenterName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ApartmentId");
 
                     b.HasIndex("CreatedDate");
@@ -330,7 +334,7 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         {
                             Id = "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e278ce51-2dff-4365-9c65-34c4dd9d2e83",
+                            ConcurrencyStamp = "d4d2b509-9e9b-483e-9f59-5a7ca3c569d8",
                             Country = "USA",
                             Email = "admin@adminsky.com",
                             EmailConfirmed = true,
@@ -338,10 +342,10 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMINSKY.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDUCTZyeyUtqCuJm37tvyGrIKkLr8EkQTINwrKrhqx1toNL5KIZQ3H2Ow9MkwljdLA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECAgGz9HSJzqLO3BeB2P4HLUK0st7rLYXhBGC3xQ7dd4HeuNPTBE0i+oJ9WDuxYnHg==",
                             PhoneNumberConfirmed = false,
                             Role = 0,
-                            SecurityStamp = "fe4fcadb-aed4-44dd-9064-7b9e73b1daa6",
+                            SecurityStamp = "4d6ac88f-7666-4480-9473-4069cf9b9124",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

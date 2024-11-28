@@ -10,7 +10,7 @@ namespace S_T.Apartaments.Entities.Entities
         public string OwnerId {  get; set; }
         public string OwnerName {  get; set; }
         public string? RenterId {  get; set; }
-        public string RenterName { get; set; }
+        public string? RenterName { get; set; }
         public string Address {  get; set; }
         public string Description {  get; set; }
         public ApartmentSize ApartmentSize {  get; set; }

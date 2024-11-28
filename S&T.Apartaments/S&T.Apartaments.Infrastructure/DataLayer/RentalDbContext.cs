@@ -5,13 +5,13 @@ using S_T.Apartaments.Entities.Entities;
 
 namespace S_T.Apartaments.Infrastructure.DataLayer
 {
-    public class S_TDbContext : IdentityDbContext<User>, IApartmentDbContext
+    public class RentalDbContext : IdentityDbContext<User>,IApartmentDbContext
     {
         public DbSet<Apartment> Apartments => Set<Apartment>();
 
         public DbSet<Booking> Bookings => Set<Booking>();   
 
-        public S_TDbContext(DbContextOptions optionsBuilder) : base(optionsBuilder) { }
+        public RentalDbContext(DbContextOptions optionsBuilder) : base(optionsBuilder) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,7 +22,7 @@ namespace S_T.Apartaments.Infrastructure.DataLayer
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(typeof(S_TDbContext).Assembly);
+            builder.ApplyConfigurationsFromAssembly(typeof(RentalDbContext).Assembly);
             base.OnModelCreating(builder);
         }
         public Task<int> SaveChangesAsync()

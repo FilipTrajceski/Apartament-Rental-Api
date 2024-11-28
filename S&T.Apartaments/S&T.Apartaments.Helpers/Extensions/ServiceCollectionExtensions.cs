@@ -36,7 +36,7 @@ namespace S_T.Apartaments.Helpers.Extensions
         public static ConfigBuilder AddSqlDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetSection("ConnectionString").Value;
-            services.AddDbContext<S_TDbContext>(options =>
+            services.AddDbContext<RentalDbContext>(options =>
             options.UseSqlServer(connectionString));
 
             return new(services, configuration);
@@ -65,7 +65,7 @@ namespace S_T.Apartaments.Helpers.Extensions
             {
                 option.SignIn.RequireConfirmedAccount = true;
             })
-                .AddEntityFrameworkStores<S_TDbContext>()
+                .AddEntityFrameworkStores<RentalDbContext>()
              .AddDefaultTokenProviders();
 
             return builder;

@@ -10,7 +10,7 @@ using S_T.Apartaments.Infrastructure.DataLayer;
 
 namespace S_T.Apartaments.Infrastructure.Migrations
 {
-    [DbContext(typeof(S_TDbContext))]
+    [DbContext(typeof(RentalDbContext))]
     partial class S_TDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -195,6 +195,9 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                     b.Property<string>("RenterId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RenterName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ApartmentId");
 
                     b.HasIndex("CreatedDate");
@@ -327,7 +330,7 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                         {
                             Id = "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e278ce51-2dff-4365-9c65-34c4dd9d2e83",
+                            ConcurrencyStamp = "77047424-4d4e-45c0-b37a-ed76fedf2929",
                             Country = "USA",
                             Email = "admin@adminsky.com",
                             EmailConfirmed = true,
@@ -335,10 +338,10 @@ namespace S_T.Apartaments.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMINSKY.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDUCTZyeyUtqCuJm37tvyGrIKkLr8EkQTINwrKrhqx1toNL5KIZQ3H2Ow9MkwljdLA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED7Uwdz3pvZJXkOYCzQtD2IaWV0m2GglN7ITIqJGHDYKuuUB05px3tfK8C2J/IEnxA==",
                             PhoneNumberConfirmed = false,
                             Role = 0,
-                            SecurityStamp = "fe4fcadb-aed4-44dd-9064-7b9e73b1daa6",
+                            SecurityStamp = "8221121f-ea61-4389-8d10-a2335d2bea65",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

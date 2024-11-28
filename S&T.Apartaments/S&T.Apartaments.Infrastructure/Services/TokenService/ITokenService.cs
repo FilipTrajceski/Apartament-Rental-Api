@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S_T.Apartaments.Infrastructure.TokenService
+namespace S_T.Apartaments.Infrastructure.Services.TokenService
 {
     public interface ITokenService
     {

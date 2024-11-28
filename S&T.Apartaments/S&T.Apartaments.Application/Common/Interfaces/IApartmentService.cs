@@ -8,7 +8,7 @@ namespace S_T.Apartaments.Application.Common.Interfaces
         Task<CustomResponse<List<ApartmentDto>>> GetAllApartmentsAsync();
         Task<CustomResponse<ApartmentDto>> GetApartmentByIdAsync(int apartmentId);
         Task<CustomResponse> AddNewApartmentAsync(string userId, BaseApartmentDto addNewDto);
-        Task<CustomResponse> UpdateApartmentAsync(string userId,int apartmentId, BaseApartmentDto updateDto);
+        Task<CustomResponse> UpdateApartmentAsync(string userId,int apartmentId, UpdateApartmentDto updateDto);
         Task<CustomResponse> DeleteApartmentAsync(string userId,int apartmentId);
     }
 }

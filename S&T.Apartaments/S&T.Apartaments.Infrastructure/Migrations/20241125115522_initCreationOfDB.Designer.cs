@@ -11,7 +11,7 @@ using S_T.Apartaments.Infrastructure.DataLayer;
 
 namespace S_T.Apartaments.Infrastructure.Migrations
 {
-    [DbContext(typeof(S_TDbContext))]
+    [DbContext(typeof(RentalDbContext))]
     [Migration("20241125115522_initCreationOfDB")]
     partial class initCreationOfDB
     {

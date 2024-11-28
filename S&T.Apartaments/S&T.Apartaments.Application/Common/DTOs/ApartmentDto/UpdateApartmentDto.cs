@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace S_T.Apartaments.Application.Common.DTOs.ApartmentDto
 {
-    public class ApartmentDto : BaseApartmentDto
-    {  
-        public int ApartmentId { get; set; }
-        public DateTime LastUpdated {  get; set; }
+    public class UpdateApartmentDto
+    {
+        public ApartmentSize Size { get; set; }
+        public ApartmentStatus Status {  get; set; }
+        public string ReasonForUpdate {  get; set; }
+
     }
 }

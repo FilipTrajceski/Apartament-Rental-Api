@@ -5,12 +5,12 @@ using Microsoft.Extensions.Configuration;
 using S_T.Apartaments.Application.Common.DTOs.UserDto;
 using S_T.Apartaments.Application.Common.Interfaces;
 using S_T.Apartaments.Entities.Entities;
-using S_T.Apartaments.Infrastructure.TokenService;
+using S_T.Apartaments.Infrastructure.Services.TokenService;
 using S_T.Apartaments.Shared.CustomExceptions.UserExceptions;
 using S_T.Apartaments.Shared.Responses;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace S_T.Apartaments.Infrastructure.UserService
+namespace S_T.Apartaments.Infrastructure.Services.UserService
 {
     public class UserService : IUserService
     {
@@ -32,18 +32,18 @@ namespace S_T.Apartaments.Infrastructure.UserService
             try
             {
                 var admin = await _userManager.FindByIdAsync(adminUserId);
-                if(admin.Role != Entities.Enums.UserRole.Admin)
+                if (admin.Role != Entities.Enums.UserRole.Admin)
                 {
                     return new CustomResponse("You can't perform this action!");
                 }
 
                 var user = await _userManager.FindByNameAsync(dto.Username);
-                if(user.Role == Entities.Enums.UserRole.Admin){ return new CustomResponse("You can't change admin roles!");}
+                if (user.Role == Entities.Enums.UserRole.Admin) { return new CustomResponse("You can't change admin roles!"); }
 
                 if (string.IsNullOrEmpty(dto.Username)) { return new CustomResponse("Username field cannot be empty!"); }
-                if(dto.CurrentRole != user.Role) { return new CustomResponse($"User's {user.UserName} Role is not matching with the one you inputed"); }
+                if (dto.CurrentRole != user.Role) { return new CustomResponse($"User's {user.UserName} Role is not matching with the one you inputed"); }
 
-                if(dto.ChangeRoleTo != Entities.Enums.UserRole.Admin &&
+                if (dto.ChangeRoleTo != Entities.Enums.UserRole.Admin &&
                    dto.ChangeRoleTo != Entities.Enums.UserRole.Owner &&
                    dto.ChangeRoleTo != Entities.Enums.UserRole.Renter)
                 {
@@ -56,11 +56,11 @@ namespace S_T.Apartaments.Infrastructure.UserService
                 return new CustomResponse($"User's {user.UserName} role changed!");
 
             }
-            catch(UserDataException ex)
+            catch (UserDataException ex)
             {
                 throw new UserDataException(ex.Message);
             }
-            catch(UserNotFoundException ex)
+            catch (UserNotFoundException ex)
             {
                 throw new UserNotFoundException(ex.Message);
             }
@@ -81,14 +81,14 @@ namespace S_T.Apartaments.Infrastructure.UserService
                 }
                 else
                 {
-                    return new CustomResponse<UserDto>(errors:"You cannot perform this action (Only admins)!");
+                    return new CustomResponse<UserDto>(errors: "You cannot perform this action (Only admins)!");
                 }
             }
-            catch(UserDataException ex)
+            catch (UserDataException ex)
             {
                 throw new UserDataException(ex.Message);
             }
-            catch(UserNotFoundException ex)
+            catch (UserNotFoundException ex)
             {
                 throw new UserNotFoundException(ex.Message);
             }
@@ -110,7 +110,7 @@ namespace S_T.Apartaments.Infrastructure.UserService
                 }
                 else
                 {
-                    return new CustomResponse("You cannot perform this action (only admins)!") { IsSuccessfull= false};
+                    return new CustomResponse("You cannot perform this action (only admins)!") { IsSuccessfull = false };
                 }
 
             }
@@ -139,7 +139,7 @@ namespace S_T.Apartaments.Infrastructure.UserService
                 }
                 else
                 {
-                    return new CustomResponse<UserDto>("You cannot perform this action (only admins)!") { IsSuccessfull= false};
+                    return new CustomResponse<UserDto>("You cannot perform this action (only admins)!") { IsSuccessfull = false };
                 }
 
             }
@@ -202,7 +202,7 @@ namespace S_T.Apartaments.Infrastructure.UserService
                 if (string.IsNullOrEmpty(registerUser.Password)) throw new UserDataException("Password can't be empty!");
                 if (string.IsNullOrEmpty(registerUser.Email)) throw new UserDataException("Email can't be empty!");
 
-                if(registerUser.Password != registerUser.ConfirmPassword) { return new("Passwords do not match!"); }
+                if (registerUser.Password != registerUser.ConfirmPassword) { return new("Passwords do not match!"); }
 
                 var user = new User()
                 {
@@ -221,7 +221,7 @@ namespace S_T.Apartaments.Infrastructure.UserService
 
                 return new("Registered Successfully");
             }
-            catch(UserDataException ex)
+            catch (UserDataException ex)
             {
                 throw new UserDataException(ex.Message);
             }
