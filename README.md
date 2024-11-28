@@ -43,4 +43,27 @@ Password : Admin123!
 ```
 With the admin role you can change other users roles,view user data,delete users.
 
+Apartments- Apartments can only be created by users with the role owner.Apartments can  be deleted or updated by users that have created that same exact apartment.
+Renters can view the apartments that are avalivle,occupied,under maintenance or other.
+
+Apartment Sizes: 
+```
+0-Small,
+1-Medium,
+2-Large,
+3-Duplex,
+4-PentHouse
+```
+
+Apartment Statuses:
+```
+0-Available,
+1-Occupied,
+2-Under_Maintenance,
+3-Renovating
+```
+
+If you want to use the apartment feature,after you make the migration you need to register another user,make him a owner(through the admin user(already created)),and enjoy the feature.
+
+Apartment feature need some minor updates...
 Work in progress...
